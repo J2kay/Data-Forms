@@ -45,18 +45,31 @@ class App extends Component {
     });
   };
 
+  editUser = (id, updatedUser) => {
+    this.setState({
+      users: this.state.users.map((user) =>
+        user.id === id ? updatedUser : user
+      ),
+    });
+  };
+
   render() {
     return (
       <>
         <Container fluid style={{ marginTop: "2rem" }}>
           <Row>
             <Col lg="4">
+              <h4>Add Users</h4>
+              <br />
               <AddUserForm addUser={this.addNewUser} />
             </Col>
             <Col>
+              <h4>All Codetrain Users</h4>
+              <br />
               <Users
                 usersData={this.state.users}
                 deleteUser={this.deleteUser}
+                editUser={this.editUser}
               />
             </Col>
           </Row>
